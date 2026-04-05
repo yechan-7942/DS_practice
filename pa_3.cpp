@@ -17,6 +17,7 @@ void node ::set_data(string s, double d){
 class my_list{
     node *head, *tail;
     public:
+    my_list();
     void add_to_head(node t);
     void add_to_tail(node t);
     node delete_from_head();
@@ -26,9 +27,10 @@ class my_list{
     double get_score(string t_name);
     int remove_a_node(string t_name);
     void show_all_data();
+    int count_height_score();
 };
 
-my_list::my_list(){
+my_list :: my_list(){
     head =NULL;
     tail = NULL;
 
@@ -132,8 +134,19 @@ int my_list :: remove_a_node(string t_name){
 void my_list :: show_all_data(){
     node *t;
     for(t=head ; t!=NULL; t= t->link){
-        cout << t->name << ":" << t->score;
+        cout << t->name << ":" << t->score << endl;
     }
+}
+
+int my_list:: count_height_score(){
+    node *t;
+    int hcount=0;
+    for(t=head; t!= NULL; t= t->link){
+        if(t->score >=80){
+            hcount ++;
+        }
+    }
+    return hcount;
 }
 
 
@@ -164,6 +177,8 @@ node   tmp;
         double average = a.score_sum() / a.num_nodes();
 
         cout << "The Average : " << average << endl;
+
+        cout << "The number of high scores(hieghter than 80) :" << a.count_height_score() <<endl;
 
 
         cout << "Choi's score : " << a.get_score("Choi") << endl;
