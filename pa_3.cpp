@@ -25,6 +25,7 @@ class my_list{
     double score_sum();
     double get_score(string t_name);
     int remove_a_node(string t_name);
+    void show_all_data();
 };
 
 my_list::my_list(){
@@ -128,4 +129,45 @@ int my_list :: remove_a_node(string t_name){
     }
     return 0;
 }
+void my_list :: show_all_data(){
+    node *t;
+    for(t=head ; t!=NULL; t= t->link){
+        cout << t->name << ":" << t->score;
+    }
+}
 
+
+int main()
+{
+my_list    a;
+node   tmp;
+        tmp.set_data("Kim", 83.5);
+        a.add_to_head(tmp);
+        tmp.set_data("Lee", 58.2);
+        a.add_to_head(tmp);
+        tmp.set_data("Park", 91.3);
+        a.add_to_head(tmp);
+        tmp.set_data("Choi", 55.1);
+        a.add_to_head(tmp);
+        tmp.set_data("Ryu", 77.1);
+        a.add_to_head(tmp);
+        tmp.set_data("Yang", 41.3);
+        a.add_to_head(tmp);
+        tmp.set_data("Hong", 78.2);
+        a.add_to_head(tmp);
+
+        cout << "\nThe list before the test \n";
+        a.show_all_data();
+
+        cout << "\nThe Number of nodes : " << a.num_nodes() << endl;
+
+        double average = a.score_sum() / a.num_nodes();
+
+        cout << "The Average : " << average << endl;
+
+
+        cout << "Choi's score : " << a.get_score("Choi") << endl;
+
+        return 0;
+
+}
