@@ -24,6 +24,7 @@ class my_list{
     bool list_empty();
     double score_sum();
     double get_score(string t_name);
+    int remove_a_node(string t_name);
 };
 
 my_list::my_list(){
@@ -103,4 +104,28 @@ void my_list :: add_to_tail(node t){
     return -1.0;//해당 이름이 없을때
 
  }
+
+int my_list :: remove_a_node(string t_name){
+    node *t;
+    node *prev =NULL;
+
+    while(t!= NULL){
+        if(t->name == t_name){
+            if(prev ==NULL){
+                head =t->link;
+            }
+            else prev ->link = t ->link;
+
+            if(t->link ==NULL)
+            tail = prev;
+            
+
+            delete t;
+            return 1;
+        }
+        prev =t;
+        t = t->link;
+    }
+    return 0;
+}
 
